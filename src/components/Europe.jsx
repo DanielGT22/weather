@@ -200,23 +200,30 @@ const EuropeComponent = () => {
                             cityImage = Ireland;
                         } 
 
-
-                        
-
-
-
-                        
-
                         return (
                             <Col key={index} sm={6} md={4} lg={12}>
                                 <Link to={`/${city.name}`} className='text-decoration-none'>
                                     <Card className='Card d-flex flex-row justify-content-around align-items-center ' style={{background: "rgb(2,0,36)",
                                 background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(196,26,195,1) 68%, rgba(0,212,255,1) 100%)"}}>
                                        <div className='ms-5'>
-                                         <Sun style={{ fontSize: '7vw' }} className='sun mt-3 ' />
-                                        <p className="text-light fs-1 fw-bold">
-                                               {weatherDescriptions[city.name] ? weatherDescriptions[city.name] : 'Loading...'}
-                                                     </p></div>
+
+                                       {weatherDescriptions[city.name] === "clear sky" ? (
+                                                <Sun style={{ fontSize: '7vw' }} className='sun mt-3' />
+                                            ) : weatherDescriptions[city.name] === "overcast clouds" || "scattered clouds" || "few clouds" || "broken clouds" ? (
+                                                <Cloud style={{ fontSize: '7vw' }} className='cloud mt-3' />
+                                            ) :  weatherDescriptions[city.name] === "light intensity shower rain"  ? (
+                                                <CloudRain style={{ fontSize: '7vw' }} className='cloud mt-3' />
+                                            )  : null}
+
+                                            <p className="text-light fs-1 fw-bold">
+                                                {weatherDescriptions[city.name] ? weatherDescriptions[city.name] : 'Loading...'}
+                                            </p>
+                                          </div>
+
+
+
+
+                                       
                                         <Card.Body className='d-flex'>
                                             <div className="popup d-flex align-items-center flex-grow-1 w-100 my-5 justify-content-around">
                                                 <div className='text-white'>
